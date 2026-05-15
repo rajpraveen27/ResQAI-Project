@@ -1,0 +1,18 @@
+# ============================================================
+# GitHub Actions DISABLED — CI/CD is handled by Jenkins
+# ============================================================
+# This project uses a Jenkins pipeline (see Jenkinsfile at root).
+# The active workflow file is: resqai/Jenkinsfile
+#
+# Jenkins Credentials required:
+#   - docker-registry-creds  (Username/Password for Docker registry)
+#   - aws-eks-creds          (AWS credentials for EKS deployment)
+#
+# Jenkins Plugins required:
+#   - Pipeline
+#   - Git
+#   - Docker Pipeline
+#   - Slack Notification
+#   - Amazon Web Services SDK / AWS Credentials
+#   - Kubernetes CLI
+# ============================================================

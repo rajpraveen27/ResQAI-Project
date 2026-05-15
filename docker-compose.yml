@@ -1,0 +1,110 @@
+version: '3.9'
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: resqai-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - resqai-net
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: resqai-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=resqai_db
+      - DB_USER=postgres
+      - DB_PASSWORD=123
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=resqai_super_secret_key_prod
+      - AI_MODULE_URL=http://ai-module:8000
+      - FRONTEND_URL=http://localhost:80
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - resqai-net
+    restart: unless-stopped
+
+  ai-module:
+    build: ./ai-module
+    container_name: resqai-ai
+    ports:
+      - "8000:8000"
+    networks:
+      - resqai-net
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: resqai-postgres
+    environment:
+      POSTGRES_DB: resqai_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/database.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - resqai-net
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: resqai-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - resqai-net
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: resqai-prometheus
+    volumes:
+      - ./infrastructure/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - resqai-net
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: resqai-grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=resqai_admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    networks:
+      - resqai-net
+    restart: unless-stopped
+
+networks:
+  resqai-net:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  grafana_data:

@@ -1,0 +1,55 @@
+.incidents-page { max-width: 1400px; }
+
+.filter-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 16px 20px;
+  flex-wrap: wrap;
+}
+.filter-group { display: flex; flex-direction: column; gap: 4px; min-width: 130px; }
+.filter-count { font-size: 13px; color: var(--text-muted); margin-left: auto; align-self: center; }
+.filter-count span { font-weight: 700; color: var(--text-primary); }
+
+.incidents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 16px;
+}
+
+.incident-card { padding: 20px; cursor: pointer; transition: all 0.2s; }
+.incident-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.15); }
+
+.inc-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.inc-type-badge { display: flex; align-items: center; gap: 6px; }
+.inc-icon { font-size: 20px; }
+.inc-type-text { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; }
+.inc-title { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; line-height: 1.3; }
+.inc-location { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+.inc-desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 14px; }
+.inc-footer { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.inc-stat { display: flex; flex-direction: column; gap: 2px; }
+.inc-stat-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.inc-stat-value { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; line-height: 1; }
+
+/* Modal */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-glass);
+}
+.modal-body { padding: 20px 24px; }
+
+.detail-stat { text-align: center; }
+.detail-stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.detail-stat-value { font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 700; }
+
+.update-row {
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.03);
+  border-left: 3px solid #ef4444;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}

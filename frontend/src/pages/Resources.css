@@ -1,0 +1,6 @@
+.resources-page { max-width: 1300px; }
+.filter-bar { display: flex; align-items: flex-end; gap: 16px; padding: 16px 20px; flex-wrap: wrap; }
+.filter-group { display: flex; flex-direction: column; gap: 4px; min-width: 130px; }
+.filter-count { font-size: 13px; color: var(--text-muted); margin-left: auto; align-self: center; }
+.filter-count span { font-weight: 700; color: var(--text-primary); }
+.res-status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }

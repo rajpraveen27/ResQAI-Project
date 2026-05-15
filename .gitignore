@@ -1,0 +1,58 @@
+# ─── Node.js ──────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+# ─── Build outputs ────────────────────────────────────────────────────
+frontend/build/
+frontend/.cache/
+
+# ─── Environment files (NEVER commit secrets) ─────────────────────────
+backend/.env
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ─── Logs ─────────────────────────────────────────────────────────────
+logs/
+*.log
+backend/logs/
+
+# ─── Python ───────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+.Python
+.venv/
+venv/
+env/
+
+# ─── Docker ───────────────────────────────────────────────────────────
+.docker/
+
+# ─── Terraform ────────────────────────────────────────────────────────
+infrastructure/terraform/.terraform/
+infrastructure/terraform/*.tfstate
+infrastructure/terraform/*.tfstate.backup
+infrastructure/terraform/.terraform.lock.hcl
+
+# ─── OS files ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── IDE / Editor ─────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ─── Testing ──────────────────────────────────────────────────────────
+coverage/
+.nyc_output/
